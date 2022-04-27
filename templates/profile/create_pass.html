@@ -1,0 +1,48 @@
+{% extends 'profile/layout.html' %}
+
+{% block content %}
+    <div class="conatiner-fluid content-inner mt-n5 py-0">
+        <div>
+            <div class="row">
+                <div class="content-inner mt-n5 py-0">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">Выставить пропуски</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p>Здравствуйте, {{ user.get_full_name }}, вы попали на форму выставления пропусков для студентов, пожалуйста заполните все поля!</p>
+                            <form class="form-horizontal" method="post">
+                                {% csrf_token %}
+                                {{ form.errors }}
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-3 align-self-center mb-0" for="email1">Оценка</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control" name="date" id="exampleInputdate" value="2019-12-18">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-3 align-self-center mb-0" for="email1">Выберите студентов</label>
+                                    <div class="col-sm-9">
+                                        {{ form.key_to_student }}
+                                        <p class="help">Что бы выбрать несколько вариантов, нажмите ctrl</p>
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-9">
+                                        <input type="hidden" class="form-control" name="teacher" id="exampleInputNumber1" value="{{ user.pk }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Создать</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

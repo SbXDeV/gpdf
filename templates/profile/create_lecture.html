@@ -1,0 +1,52 @@
+{% extends 'profile/layout.html' %}
+
+{% block content %}
+    <div class="conatiner-fluid content-inner mt-n5 py-0">
+        <div>
+            <div class="row">
+                <div class="content-inner mt-n5 py-0">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">Cоздание лекции</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p>Здравствуйте, {{ user.get_full_name }}, вы попали на форму создания лекции для студентов и присвоение ей группы, что бы создать студента, пожалуйста заполните все поля!</p>
+                            <form class="form-horizontal" method="post">
+                                {% csrf_token %}
+                                {{ forms.error }}
+                                <div class="form-group row">
+                                    <div class="col-sm-9">
+                                        <input type="hidden" class="form-control" name="teacher" id="exampleInputNumber1" value="{{ user.pk }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-3 align-self-center mb-0" for="email1">Название лекции</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="email1" name="title" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-3 align-self-center mb-0" for="email1">Длительность лекции</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="time" id="exampleInputNumber1" value="45">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-3 align-self-center mb-0" for="email1">Дата проведения</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control" name="date" id="exampleInputdate" value="2019-12-18">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Создать</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

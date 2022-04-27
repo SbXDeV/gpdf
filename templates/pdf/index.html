@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+<body style="background-color: #525659;">
+<div class="container" style="background-color: white;">
+    <p style="text-align: end" class="mb-0">УТВЕРЖДАЮ:</p>
+    <p style="text-align: end" class="mb-0">Декан факультета</p>
+    <p style="text-align: end" class="mb-0">КТ и ИБ</p>
+    <p style="text-align: end" class="mb-0">Тищенко Е.Н</p>
+    <p style="text-align: end" class="mb-0">"31" августа 2020 г.</p>
+
+    <h5 style="text-align: center" class="mb-3">ЛИСТ КОНТРОЛЬНЫХ МЕРОПРИЯТИЙ</h5>
+    {% for row in serv %}
+        {% if forloop.first %}
+            <p class="mb-0">Кафедра: <span class="text-decoration-underline" style="font-weight: bold;">{{ row.value.department }}</span></p>
+            <p class="mb-0">Дисциплина <span class="text-decoration-underline" style="font-weight: bold;">«{{ row.value.discipline }}»</span></p>
+            <p class="mb-0">Для учебной группы: <span class="text-decoration-underline" style="font-weight: bold;">{{ row.value.group.title }}</span></p>
+            <p class="mb-0"><span class="text-decoration-underline" style="font-weight: bold;">Курс {{ row.value.course }} Семестр {{ row.value.semester }}</span></p>
+        {% endif %}
+    {% endfor %}
+    <p class="mb-0"><span class="text-decoration-underline" style="font-weight: bold;">Текущая аттестация</span> по дисциплине проводится с помощью следующих оценочных средств:</p>
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Оценочные средства (указываются в соответствии с ФОСом)</th>
+            <th scope="col">Форма проведения</th>
+            <th scope="col">Порядок проведения</th>
+            <th scope="col">Шкала оценивания (в сумме по всем видам оценочных средств 100 баллов)</th>
+            <th scope="col">Критерии оценивания</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="5">
+                <table class="table mb-0">
+                    {% for row in serv %}
+                        {% if forloop.first %}
+                            <p class="text-center mb-0">Контрольная точка 1 - {{ row.value.check_point_date_start }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+            </td>
+        </tr>
+        {% for row in serv %}
+            {% if row.check_point ==  1%}
+                <tr>
+                    <td>{{ row.grade_service }}</td>
+                    <td>{{ row.form_holding }}</td>
+                    <td>{{ row.order_holding }}</td>
+                    <td>{{ row.evaluation_scale }}</td>
+                    <td>{{ row.evaluation_criteria }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        <td colspan="5">
+            <table class="table mb-0">
+                {% for row in serv %}
+                    {% if forloop.first %}
+                    <p class="text-center mb-0">Контрольная точка 2 - {{ row.value.check_point_date_end }}</p>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </td>
+        {% for row in serv %}
+            {% if row.check_point ==  2%}
+                <tr>
+                    <td>{{ row.grade_service }}</td>
+                    <td>{{ row.form_holding }}</td>
+                    <td>{{ row.order_holding }}</td>
+                    <td>{{ row.evaluation_scale }}</td>
+                    <td>{{ row.evaluation_criteria }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+-->
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends 'profile/layout.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="header-title">
+                        <h4 class="card-title">Успеваемость учеников групп</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Страница успеваемость учеников из вашей группы, тут можно выставить оценки, или ознакомиться с уже выставленными оценками</p>
+                    <div class="table-responsive">
+                        <table id="datatable" class="table table-striped" data-toggle="data-table">
+                            <thead>
+                            <tr>
+                                <th>Наименование</th>
+                                <th>Контрольная точка #1</th>
+                                <th>Контрольная точка #2</th>
+                                <th>Преподаватель</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for row in rows %}
+                                <tr>
+                                    <td><a href="{% url 'Index:pdf_gen' %}">{{ row }}</a></td>
+                                    <td>{{ row.check_point_date_start }}</td>
+                                    <td>{{ row.check_point_date_end }}</td>
+                                    <td>{{ user.get_full_name }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>Наименование</th>
+                                <th>Контрольная точка #1</th>
+                                <th>Контрольная точка #2</th>
+                                <th>Преподаватель</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
