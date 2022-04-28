@@ -15,11 +15,8 @@ urlpatterns = [
     # Таблицы
     path('accounts/profile/table', table, name='table'),
     path('accounts/profile/table-list', table_list, name='table-list'),
-    path('accounts/profile/table-pass', table_pass, name='table-pass'),
     path('accounts/profile/table/<int:pk>', table_delate, name='table-delete'),
-    path('accounts/profile/table/pass/<int:pk>', table_delate_pass, name='table-pass-delete'),
     path('accounts/profile/table/<int:pk>/update', Update_Table_View.as_view(), name='table-update'),
-    path('accounts/profile/table/pass/<int:pk>/update', Update_Table_Pass_View.as_view(), name='table-pass-update'),
     path('accounts/profile/pdf/', Pdfer.as_view(), name='pdf_gen')
 
 ]

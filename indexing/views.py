@@ -186,7 +186,7 @@ class CreatePass(CreateView):
 def table(request):
     tables = Grade.objects.filter(teacher__username=request.user)
     context = {
-        'table': tables
+        'table': tables,
     }
     if request.user.is_authenticated:
         temp = 'profile/table-data.html'
@@ -206,19 +206,6 @@ def table_list(request):
         temp = 'account/login.html'
     return render(request, temp, context)
 
-
-def table_pass(request):
-    tables = Pass.objects.filter(teacher__username=request.user)
-    context = {
-        'table': tables
-    }
-    if request.user.is_authenticated:
-        temp = 'profile/table-data-pass.html'
-    else:
-        temp = 'account/login.html'
-    return render(request, temp, context)
-
-
 def table_delate(request, pk):
     tables = Grade.objects.get(id=pk)
     tables.delete()
@@ -230,20 +217,6 @@ class Update_Table_View(UpdateView):
     template_name = 'profile/create_grade.html'
     form_class = AddGrade
     success_url = '/accounts/profile/table'
-
-
-class Update_Table_Pass_View(UpdateView):
-    model = Pass
-    template_name = 'profile/create_pass.html'
-    form_class = AddPass
-    success_url = '/accounts/profile/table-pass'
-
-
-def table_delate_pass(request, pk):
-    tables = Pass.objects.get(id=pk)
-    tables.delete()
-    return redirect('/accounts/profile/table-pass')
-
 
 class Pdfer(ListView):
     model = List_Of_Control_Activities_Value

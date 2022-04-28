@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Успеваемость учеников групп</h4>
+                        <h4 class="card-title">Успеваемость учеников групы</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -29,7 +29,11 @@
                                         <td>{{ student.full_name }}</td>
                                         <td>{{ row.key.title }}</td>
                                         <td>{{ row.teacher.get_full_name }}</td>
-                                        <td>{{ row.grades }}</td>
+                                        {% if row.grades == 0 %}
+                                            <td>Пропуск</td>
+                                        {% else %}
+                                            <td id="value">{{ row.grades }}</td>
+                                        {% endif %}
                                         <td>{{ row.key.date }}</td>
                                         <td>
                                             <div class="flex align-items-center list-user-action">

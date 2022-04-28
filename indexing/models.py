@@ -52,7 +52,7 @@ class Students(models.Model):
 class Grade(models.Model):
     """ Оценка """
     teacher = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Учитель')
-    grades = models.IntegerField(verbose_name='Оценка', default=0)
+    grades = models.IntegerField(verbose_name='Оценка',  default=0)
     key = models.ForeignKey(Lecture, verbose_name='За лекцию', on_delete=models.CASCADE)
     key_to_student = models.ManyToManyField(Students, verbose_name='Студентам')
 
